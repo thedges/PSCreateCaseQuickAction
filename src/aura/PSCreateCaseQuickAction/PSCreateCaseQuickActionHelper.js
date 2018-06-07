@@ -88,6 +88,7 @@
         else
         {
             self.hideSpinner(component); 
+            self.closeQuickAction(component);
             self.navToCase(component);
         }
     },
@@ -106,6 +107,7 @@
             var attachId = a.getReturnValue();
             console.log(attachId);
             self.hideSpinner(component);
+            self.closeQuickAction(component);
             self.navToCase(component);
         });
         
