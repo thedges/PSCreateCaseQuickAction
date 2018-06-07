@@ -9,6 +9,10 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>New_Case</members>
+        <name>QuickAction</name>
+    </types>
+    <types>
         <members>PSButtonLauncherGPSIcon</members>
         <name>StaticResource</name>
     </types>
