@@ -1,0 +1,11 @@
+.THIS #blcontainer {
+	position: relative;
+}
+
+.THIS #locateDiv {
+	position: absolute; top: 3px; right: 5px; z-index: 999; padding: 0px; 
+}
+
+.THIS .hide {
+    display: none;
+}

@@ -1,0 +1,65 @@
+<aura:component controller="PSCreateCaseQuickActionController" implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName" >
+    <aura:attribute name="statusList" type="List" />    
+    <aura:attribute name="status" type="String" default="New"/>
+    
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name="contactId" type="String" />
+    <aura:attribute name="subject" type="String" />
+    <aura:attribute name="description" type="String" />
+    
+    <aura:attribute name="latitudeField" type="String" default="Reported_Location__Latitude__s"/>
+    <aura:attribute name="longitudeField" type="String" default="Reported_Location__Longitude__s"/>
+    <aura:attribute name="latitude" type="String" />
+    <aura:attribute name="longitude" type="String" />
+    
+    <aura:attribute name="gpsIcon" type="String" default="/resource/PSButtonLauncherGPSIcon"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:attribute name="IsSpinner" type="Boolean" default="false"/>
+    
+    <aura:if isTrue="{!v.IsSpinner}">
+       <lightning:spinner variant="brand"  size="large" />
+    </aura:if>
+    <div>
+        <div aura:id="blcontainer" id="blcontainer">
+            <div class="slds-grid slds-wrap">
+              <div class="slds-size--1-of-1 slds-p-bottom_xx-small">
+                  <c:strike_lookup label="Contact2"
+                                     object="Contact"
+                                     searchField="Name"
+                                     placeholder="Select a contact"
+                                     iconName="standard:contact"
+                                     subtitleField="Title"
+                                     order="Name"
+                                     limit="5"
+                                     loadingMessage="Loading..."
+                                     errorMessage="Invalid input"
+                                     value="{!v.contactId}"/>
+              </div>
+              <div class="slds-size--1-of-1 slds-p-bottom_xx-small">
+                  <lightning:select name="statusSelect" label="Status" value="{!v.status}">
+                        <aura:iteration items="{!v.statusList}" var="s">
+                            <option value="{!s}" selected="{!s==v.status}">{!s}</option>
+                        </aura:iteration>
+                  </lightning:select>  
+              </div>
+              <div class="slds-size--1-of-1 slds-p-bottom_xx-small">
+                  <lightning:input aura:id="subject" type="text" name="Subject" label="Subject" value="{!v.subject}" required="false" />
+              </div>
+              <div class="slds-size--1-of-1 slds-p-bottom_xx-small">
+                    <lightning:textarea aura:id="description" name="Description" label="Description" value="{!v.description}" maxlength="1000" />
+              </div>
+              <div class="slds-size--1-of-1 slds-p-bottom_large">
+                    <input type="file" class="file" aura:id="file" />
+              </div>
+              <div class="slds-size--1-of-1">
+                    <lightning:button aura:id="submit" variant="brand" label="Submit" onclick="{!c.submitCase}" />
+              </div>
+            </div>
+
+        </div>
+        <div aura:id="locateDiv" id="locateDiv" class="hide"><img src="{!v.gpsIcon}" height="15" width="15" /></div>
+
+    </div>
+</aura:component>

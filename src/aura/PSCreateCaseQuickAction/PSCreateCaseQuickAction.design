@@ -1,0 +1,5 @@
+<design:component >
+	<design:attribute name="latitudeField" label="Case field API name for storing latitude" Description="Field API name for storing latitude"  />
+    <design:attribute name="longitudeField" label="Case field API name for storing longitude" Description="Field API name for storing longitude"  />
+
+</design:component>
